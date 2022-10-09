@@ -1,0 +1,39 @@
+t-shirt:
+- https://id-test-11.slatic.net/p/38d64d92e40f5f622bdafd32791d39af.png
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf4dYZO12Yt49MC6WS4AzdcadyNjVdApGYIg&usqp=CAU
+
+sweater:
+- https://5.imimg.com/data5/CG/FL/MY-1594438/mens-plain-sweater-500x500.jpg
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRDPm-YN715NeufWw2a7_NmOQvhaZLYOpCdw&usqp=CAU
+
+jacket:
+- https://cf.shopee.ph/file/41703c46b71a46e57a1fad678be72462
+- https://sc04.alicdn.com/kf/U9e3d05e0af344c9292d7bfa185ab1b5c7.jpg
+
+socks:
+- https://www.condor.es/tienda/42264/basic-plain-knee-high-socks-red.jpg
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI32FQurFVnayE7PEjAQVBuTuwyYhRtrDzSw&usqp=CAU
+
+pants:
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiUif_Fp8V9-FGlKAbYjNcvWrKbvMSY-zLkw&usqp=CAU
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGylO2-KCGCyE6CbyGzl6A_5xJwhNRBgijRA&usqp=CAU
+
+skirt:
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeuV9JgIdL2AkT6XPF72CkYm8SD0EJ7g9r2w&usqp=CAU
+- https://static-01.daraz.pk/p/e422ee86d59a56ba2028ea29f568b6a3.jpg
+
+shirt:
+- https://dictionary.cambridge.org/fr/images/thumb/shirt_noun_002_33400.jpg?version=5.0.252
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy9twC1_JcgqH40kkPkrAx3bU1xxRSmb74GQ&usqp=CAU
+
+shoes:
+- https://images-na.ssl-images-amazon.com/images/I/418y0++Hf1L._AC._SR240,240.jpg
+- https://media.cntraveler.com/photos/60738c35ac52332b71f172c1/master/w_2100,h_1500,c_limit/MensSlipOnShoes-2021-LoroPiana.jpg
+
+dress:
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1y3BWTiVM2vZoeKbTeGow4vUPfmtgPgdkxQ&usqp=CAU
+- https://images.selfridges.com/is/image/selfridges/R03970717_LOMITA_ALT10?defaultImage=R03970717_LOMITA_M&$PLP_ALL$
+
+hat:
+- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGceKwJQqSnIAOArslmtfjPMVJ4ee4pTj4ww&usqp=CAU
+- https://upload.wikimedia.org/wikipedia/commons/e/eb/Baseball_cap.jpg
