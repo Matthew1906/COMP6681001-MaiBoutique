@@ -18,7 +18,21 @@ Route::get('/', function () {
     $signedIn = true;
     if($signedIn){
         $products = Product::all();
-        return view('pages.home', ['signedIn'=>true, 'admin'=>false, 'products'=>$products]);
+        return view('pages.home', ['signedIn'=>true, 'admin'=>false, 'products'=>$products, 'search'=>false]);
     }
     return view('pages.home', ['signedIn'=>false, 'admin'=>false]);
-});
+})->name('home');
+
+Route::get('/search', function () {
+    $signedIn = true;
+    if($signedIn){
+        $products = Product::all();
+        return view('pages.home', ['signedIn'=>true, 'admin'=>false, 'products'=>$products, 'search'=>true]);
+    }
+    return view('pages.home', ['signedIn'=>false, 'admin'=>false]);
+})->name('search');
+
+Route::get('/products/{id}', function($id){
+    $product = Product::find($id);
+    return view('pages.detail', ['signedIn'=>true, 'admin'=>false, 'product'=>$product]);
+})->name('detail');

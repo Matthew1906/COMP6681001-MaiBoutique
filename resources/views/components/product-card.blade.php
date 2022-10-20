@@ -4,7 +4,7 @@
     <h4 class='text-md font-md mb-1'>{{ $product->price }}</h4>
     {{-- Kurang link to detail page --}}
     @include('components.button', [
-        'link' => '#',
+        'link' => route('detail', ['id'=>$product->id]),
         'text' => 'More Detail',
         'color' => 'fill',
         'size' => 'sm',

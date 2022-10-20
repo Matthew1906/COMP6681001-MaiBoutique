@@ -1,8 +1,26 @@
 @include('partials.header', ['title' => 'Home - MaiBoutique', 'signedIn' => $signedIn, 'admin' => $admin])
 @if ($signedIn)
     <div class='w-100 h-auto p-5 mb-auto'>
-        <h1 class='text-xl md:text-2xl font-semibold text-center mb-1'>Find your best clothes here!!</h1>
-        <div class='flex flex-wrap justify-center lg:justify-between gap-4 p-5'>
+        <h1 class='text-xl md:text-2xl font-semibold text-center mb-1'>
+            @if($search)
+            Search your favorite clothes!
+            @else
+            Find your best clothes here!
+            @endif
+        </h1>
+        @if($search)
+        {{-- Backend not done --}}
+        <form action="" method='POST' class='w-100 flex gap-2 mt-2 p-4'>
+            <input type="text" name='query' class='border border-gray-200 rounded-sm py-1 px-2 flex-grow' placeholder='Type something'>
+            @include('components.button', [
+                'link' => false,
+                'text' => 'Search',
+                'color' => 'fill',
+                'size' => 'sm',
+            ])
+        </form>
+        @endif
+        <div class='flex flex-wrap justify-center lg:justify-between gap-4 px-5 py-2'>
             @foreach ($products as $product)
                 @include('components.product-card', ['product' => $product, 'type' => 'product'])
             @endforeach

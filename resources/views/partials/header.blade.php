@@ -18,8 +18,8 @@
             <h1 class='font-semibold text-xl'>MAI BOUTIQUE</h1>
             @if ($signedIn)
                 <ul class='font-light md:text-md flex list-none gap-3'>
-                    <li><a href="#" class='hover:text-cyan-600'>Home</a></li>
-                    <li><a href="#" class='hover:text-cyan-600'>Search</a></li>
+                    <li><a href={{route('home')}} class='hover:text-cyan-600'>Home</a></li>
+                    <li><a href={{route('search')}} class='hover:text-cyan-600'>Search</a></li>
                     @if (!$admin)
                         <li><a href="#" class='hover:text-cyan-600'>Cart</a></li>
                         <li><a href="#" class='hover:text-cyan-600'>History</a></li>
