@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $signedIn = true;
+    if($signedIn){
+        $products = Product::all();
+        return view('pages.home', ['signedIn'=>true, 'admin'=>false, 'products'=>$products]);
+    }
+    return view('pages.home', ['signedIn'=>false, 'admin'=>false]);
 });
