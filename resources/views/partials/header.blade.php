@@ -11,7 +11,7 @@
 
 {{-- Kurang Auth stuff and links (masih placeholder) --}}
 
-<body class='w-100 flex flex-col min-h-screen h-auto'>
+<body class='w-full flex flex-col min-h-screen h-auto'>
     <nav
         class='bg-slate-200 px-5 py-2 md:px-10 md:py-5 flex flex-col md:flex-row justify-center md:justify-between items-center gap-2 md:gap-0'>
         <div class='flex flex-col md:flex-row items-center gap-1 md:gap-4'>
@@ -21,7 +21,7 @@
                     <li><a href={{route('home')}} class='hover:text-cyan-600'>Home</a></li>
                     <li><a href={{route('search')}} class='hover:text-cyan-600'>Search</a></li>
                     @if (!$admin)
-                        <li><a href="#" class='hover:text-cyan-600'>Cart</a></li>
+                        <li><a href={{route('cart', ['user_id'=>2])}} class='hover:text-cyan-600'>Cart</a></li>
                         <li><a href="#" class='hover:text-cyan-600'>History</a></li>
                     @endif
                     <li><a href="#" class='hover:text-cyan-600'>Profile</a></li>
@@ -36,7 +36,7 @@
                 'size' => 'sm',
             ])
             @includeWhen($signedIn && $admin, 'components.button', [
-                'link' => '#',
+                'link' => route('add-product'),
                 'text' => 'Add Item',
                 'color' => 'outline',
                 'size' => 'sm',
