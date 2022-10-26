@@ -1,5 +1,5 @@
-@include('partials.header', ['title' => 'My Cart - MaiBoutique', 'signedIn' => $signedIn, 'admin' => $admin])
-@if ($signedIn)
+@include('partials.header', ['title' => 'My Cart - MaiBoutique'])
+@auth
     <div class='h-auto p-5 mb-auto'>
         <h1 class='text-xl md:text-2xl font-semibold text-center mb-1'>
             My Cart
@@ -21,5 +21,5 @@
             @endforeach
         </div>
     </div>
-@endif
+@endauth
 @include('partials.footer')

@@ -9,43 +9,56 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     // Show register form
-    public function create(){
-        return view('pages.register', ['signedIn'=>true, 'admin'=>false]);
+    public function create()
+    {
+        return view('pages.register');
     }
 
     // Store registered user data
-    public function store(Request $req){
+    public function store(Request $req)
+    {
         $formFields = $req->validate([
-            'username' => ['required','min:5','max:20'],
-            'email' => ['required','email',Rule::unique('users', 'email')],
-            'password' => ['required','min:5','max:20'],
-            'phone' => ['numeric','min_digits:10','max_digits:13'],
-            'address' => ['required','min:5']
+            'username' => ['required', 'min:5', 'max:20'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => ['required', 'min:5', 'max:20'],
+            'phone' => ['numeric', 'min_digits:10', 'max_digits:13'],
+            'address' => ['required', 'min:5']
         ]);
 
         $formFields['password'] = bcrypt($formFields['password']);
 
         $user = User::create($formFields);
 
-        return redirect('/');
+        return redirect(route('home'));
     }
 
-    public function login() {
-        return view('pages.login', ['signedIn'=>true, 'admin'=>false]);
+    // Show login form
+    public function login()
+    {
+        return view('pages.login');
     }
 
-    public function authenticate(Request $req) {
+    // Authenticate user
+    public function authenticate(Request $req)
+    {
         $formFields = $req->validate([
-            'email' => ['required','email'],
-            'password' => ['required','min:5','max:20']
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:5', 'max:20']
         ]);
 
-        if(auth()->attempt($formFields)) {
+        if (auth()->attempt($formFields)) {
             $req->session()->regenerate();
 
-            return redirect('/');
+            return redirect(route('home'));
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+    }
+
+    // Logout user
+    public function logout()
+    {
+        auth()->logout();
+        return redirect(route('home'));
     }
 }

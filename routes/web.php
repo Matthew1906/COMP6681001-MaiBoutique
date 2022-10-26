@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,59 +16,35 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Home
 Route::get('/', function () {
-    $signedIn = true;
-    if($signedIn){
-        $products = Product::all();
-        return view('pages.home', ['signedIn'=>true, 'admin'=>false, 'products'=>$products]);
-    }
-    return view('pages.home', ['signedIn'=>false, 'admin'=>false]);
-})->name('home');
+    return view('pages.landing');
+})->name('landing');
 
-// Login Page
-Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::controller(UserController::class)->group(function () {
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'authenticate')->name('authenticate');
+    Route::get('/register', 'create')->name('create-user');
+    Route::post('/register', 'store')->name('store-user');
+    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+});
 
-Route::post('/authenticate', [UserController::class, 'authenticate']);
-
-// Register Page
-Route::get('/register', [UserController::class, 'register'])->name('register');
-
-Route::post('/register', [UserController::class, 'store']);
-
-// Search
-Route::get('/search', function (Request $request) {
-    $signedIn = true;
-    if($signedIn){
-        $params = $request->query('query', "");
-        $products = Product::where('name', 'like', '%'.$params.'%')
-            ->orWhere('description', 'like', '%'.$params.'%')
-            ->get();
-        return view('pages.home', ['signedIn'=>true, 'admin'=>false, 'products'=>$products, 'search'=>true]);
-    }
-    return view('pages.home', ['signedIn'=>false, 'admin'=>false]);
-})->name('search');
-
-// Get products by id
-Route::get('/products/{id}', function($id){
-    // Will include edit cart
-    $product = Product::find($id);
-    return view('pages.detail', ['signedIn'=>true, 'admin'=>false, 'product'=>$product]);
-})->name('detail');
-
-// Add product
-Route::get('/add-product', function(){
-    return view('pages.add-product', ['signedIn'=>true, 'admin'=>true]);
-})->name('add-product');
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/products', 'index')->name('home');
+    Route::get('/products/search', 'search')->name('search');
+    Route::get('/products/{id}', 'show')->name('detail')->where('id', '[0-9]+');;
+    Route::get('/products/add', 'create')->name('create-product')->middleware('admin');
+    Route::post('/products/add', 'store')->name('store-product')->middleware('admin');
+    Route::get('/products/delete/{id}', 'destroy')->name('destroy-product')->middleware('admin');
+});
 
 // Get user cart
-Route::get('{user_id}/cart', function($user_id){
+Route::get('{user_id}/cart', function ($user_id) {
     $products = Product::all()->random(7);
-    return view('pages.cart', ['signedIn'=>true, 'admin'=>false, 'products'=>$products]);
+    return view('pages.cart', ['signedIn' => true, 'admin' => false, 'products' => $products]);
 })->name('cart');
 
 // Get cart details
-Route::get('{user_id}/cart/{product_id}', function($user_id, $product_id){
+Route::get('{user_id}/cart/{product_id}', function ($user_id, $product_id) {
     $product = Product::find($product_id);
-    return view('pages.detail', ['signedIn'=>true, 'admin'=>false, 'product'=>$product, 'edit'=>true]);
+    return view('pages.detail', ['signedIn' => true, 'admin' => false, 'product' => $product, 'edit' => true]);
 })->name('edit-cart');
