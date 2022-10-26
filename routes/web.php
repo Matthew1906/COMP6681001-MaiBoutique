@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home
 Route::get('/', function () {
     $signedIn = true;
     if($signedIn){
@@ -23,6 +25,17 @@ Route::get('/', function () {
     return view('pages.home', ['signedIn'=>false, 'admin'=>false]);
 })->name('home');
 
+// Login Page
+Route::get('/login', [UserController::class, 'login'])->name('login');
+
+Route::post('/authenticate', [UserController::class, 'authenticate']);
+
+// Register Page
+Route::get('/register', [UserController::class, 'register'])->name('register');
+
+Route::post('/register', [UserController::class, 'store']);
+
+// Search
 Route::get('/search', function () {
     $signedIn = true;
     if($signedIn){
@@ -32,21 +45,25 @@ Route::get('/search', function () {
     return view('pages.home', ['signedIn'=>false, 'admin'=>false]);
 })->name('search');
 
+// Get products by id
 Route::get('/products/{id}', function($id){
     // Will include edit cart
     $product = Product::find($id);
     return view('pages.detail', ['signedIn'=>true, 'admin'=>true, 'product'=>$product]);
 })->name('detail');
 
+// Add product
 Route::get('/add-product', function(){
     return view('pages.add-product', ['signedIn'=>true, 'admin'=>true]);
 })->name('add-product');
 
+// Get user cart
 Route::get('{user_id}/cart', function($user_id){
     $products = Product::all()->random(7);
     return view('pages.cart', ['signedIn'=>true, 'admin'=>false, 'products'=>$products]);
 })->name('cart');
 
+// Get cart details
 Route::get('{user_id}/cart/{product_id}', function($user_id, $product_id){
     $product = Product::find($product_id);
     return view('pages.detail', ['signedIn'=>true, 'admin'=>false, 'product'=>$product, 'edit'=>true]);
