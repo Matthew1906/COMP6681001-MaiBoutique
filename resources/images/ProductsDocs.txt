@@ -37,3 +37,6 @@ dress:
 hat:
 - https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGceKwJQqSnIAOArslmtfjPMVJ4ee4pTj4ww&usqp=CAU
 - https://upload.wikimedia.org/wikipedia/commons/e/eb/Baseball_cap.jpg
+
+header.webp:
+- https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.downtoearthtelluride.com%2F&psig=AOvVaw1JA12CkNrnrsMQROg4R3vM&ust=1666845260716000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCLjrtsyI_foCFQAAAAAdAAAAABAE

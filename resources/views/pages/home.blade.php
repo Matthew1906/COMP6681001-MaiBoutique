@@ -13,7 +13,7 @@
         @isset($search)
             @if ($search)
                 {{-- Backend not done --}}
-                <form action="" method='POST' class='w-100 flex gap-2 mt-2 p-4'>
+                <form action="/search" method='GET' class='w-100 flex gap-2 mt-2 p-4'>
                     <input type="text" name='query' class='border border-gray-200 rounded-sm py-1 px-2 flex-grow'
                         placeholder='Type something'>
                     @include('components.button', [
@@ -25,7 +25,7 @@
                 </form>
             @endif
         @endisset
-        <div class='flex flex-wrap justify-center lg:justify-between gap-4 px-5 py-2'>
+        <div class='flex flex-wrap @if(count($products)%4==0)justify-between @else justify-start @endif gap-4 px-5 py-2'>
             @foreach ($products as $product)
                 @include('components.product-card', ['product' => $product, 'type' => 'product'])
             @endforeach

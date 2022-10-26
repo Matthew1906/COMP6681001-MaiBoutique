@@ -4,7 +4,18 @@
         <h1 class='text-xl md:text-2xl font-semibold text-center mb-1'>
             My Cart
         </h1>
-        <div class='flex flex-wrap justify-center gap-4 px-5 py-2'>
+        <div class='my-2 flex justify-end items-center gap-2 px-5'>
+            <h1 class='text-lg md:text-xl font-semibold text-center mb-1'>
+                Total Price: 40,000
+            </h1>
+            @include('components.button', [
+                'link' => false,
+                'text' => 'Check Out ('.count($products).')',
+                'color' => 'fill',
+                'size' => 'sm',
+            ])
+        </div>
+        <div class='flex flex-wrap @if(count($products)%4==0)justify-between @else justify-center @endif gap-2 px-4 py-2'>
             @foreach ($products as $product)
                 @include('components.product-card', ['product' => $product, 'type' => 'cart'])
             @endforeach
