@@ -1,5 +1,5 @@
 @include('partials.header', ['title' => 'Home - MaiBoutique', 'signedIn' => $signedIn, 'admin' => $admin])
-@if ($signedIn)
+@auth
     <div class='h-auto p-5 mb-auto'>
         <h1 class='text-xl md:text-2xl font-semibold text-center mb-1'>
             @isset($search)
@@ -47,5 +47,5 @@
             ])
         </div>
     </div>
-@endif
+@endauth
 @include('partials.footer')

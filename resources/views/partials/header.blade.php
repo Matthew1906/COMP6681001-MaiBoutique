@@ -16,7 +16,7 @@
         class='bg-slate-200 px-5 py-2 md:px-10 md:py-5 flex flex-col md:flex-row justify-center md:justify-between items-center gap-2 md:gap-0'>
         <div class='flex flex-col md:flex-row items-center gap-1 md:gap-4'>
             <h1 class='font-semibold text-xl'>MAI BOUTIQUE</h1>
-            @if ($signedIn)
+            @auth
                 <ul class='font-light md:text-md flex list-none gap-3'>
                     <li><a href={{route('home')}} class='hover:text-cyan-600'>Home</a></li>
                     <li><a href={{route('search')}} class='hover:text-cyan-600'>Search</a></li>
@@ -26,7 +26,7 @@
                     @endif
                     <li><a href="#" class='hover:text-cyan-600'>Profile</a></li>
                 </ul>
-            @endif
+            @endauth
         </div>
         <div class='flex gap-2 md:gap-4'>
             @includeWhen(!$signedIn, 'components.button', [
