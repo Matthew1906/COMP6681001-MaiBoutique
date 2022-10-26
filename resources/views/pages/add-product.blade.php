@@ -12,22 +12,47 @@
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="image" class='mb-2'>Clothes Image</label>
             <input type="file" name='image'>
+            @error('image')
+                <p class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="name" class='mb-2'>Clothes Name</label>
             <input type="text" name='name' placeholder='(5-20 letters)' class='px-2 py-1 w-full'>
+            @error('name')
+                <p class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="desc" class='mb-2'>Clothes Description</label>
             <input type="text" name='description' placeholder='(min 5 letters)' class='px-2 py-1 w-full'>
+            @error('description')
+                <p class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="price" class='mb-2'>Clothes Price</label>
             <input type="number" name='price' placeholder="≥ 1000" class='px-2 py-1 w-full'>
+            @error('price')
+                <p class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="stock" class='mb-2'>Clothes Stock</label>
             <input type="number" name='stock' placeholder='≥ 1' class='px-2 py-1 w-full'>
+            @error('stock')
+                <p class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
         <div class='px-3'>
             @include('components.button', [
@@ -37,15 +62,6 @@
                 'size' => 'sm',
             ])
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     </form>
 </div>
 @include('partials.footer')
