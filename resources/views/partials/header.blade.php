@@ -25,7 +25,7 @@
                         <li><a href={{ route('cart', ['user_id' => Auth::id()]) }} class='hover:text-cyan-600'>Cart</a></li>
                         <li><a href="#" class='hover:text-cyan-600'>History</a></li>
                     @endif
-                    <li><a href="#" class='hover:text-cyan-600'>Profile</a></li>
+                    <li><a href={{ route('profile')}} class='hover:text-cyan-600'>Profile</a></li>
                 </ul>
             @endauth
         </div>

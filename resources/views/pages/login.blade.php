@@ -1,7 +1,7 @@
 @include('partials.header', ['title' => 'Sign In - MaiBoutique'])
 
-<div class="register flex justify-center mt-16">
-    <div class="register flex flex-col items-center w-[300px]">
+<div class="login flex justify-center my-16">
+    <div class="login flex flex-col items-center w-[400px] bg-white rounded-lg p-8">
         <h2 class="text-3xl">
             Sign In
         </h2>
@@ -38,7 +38,7 @@
 
             <button type="submit"
                 class="w-full rounded-md bg-blue-400 hover:bg-blue-600 p-2 mt-8
-            text-white text-lg font-bold">
+                text-white text-lg font-bold">
                 Sign In
             </button>
         </form>
