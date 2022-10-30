@@ -30,6 +30,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/register', 'create')->name('create-user');
     Route::post('/register', 'store')->name('store-user');
     Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+    Route::get('/profile', 'profile')->name('profile')->middleware('auth');
+    Route::get('/edit-profile', 'updateProfile')->name('edit-profile');
+    Route::get('/edit-password', 'updatePassword')->name('edit-password');
+    Route::patch('/user/profile', 'update')->name('update-profile');
 });
 
 Route::controller(ProductController::class)->group(function () {
