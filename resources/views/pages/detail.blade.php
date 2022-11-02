@@ -10,20 +10,26 @@
             <h1 class='text-2xl md:text-4xl mb-1'>{{ $product->name }}</h1>
             <h3 class='text-xl md:text-2xl pb-1 border-b-2 border-gray-300'>{{ $product->price }}</h3>
             <h2 class='md:text-lg my-1'>Product Detail</h2>
-            <p class='border-b-4 font-normal border-gray-500 pb-3 text-xs md:text-sm'>{{ $product->description }}
+            <p class='font-normal pb-1 text-xs md:text-sm'>{{ $product->description }}
+            <h2 class='md:text-lg my-1 border-b-4 pb-3 border-gray-500'>Stock: {{ $product->stock }}</h2>
             </p>
             @if (Auth::id() != 1)
-                @php
-                    $prompt = 'Add to Cart';
-                @endphp
-                @isset($edit)
-                    @php
-                        $prompt = 'Edit Cart';
-                    @endphp
-                @endisset
                 <h2 class='md:text-lg my-1'>Quantity:</h2>
-                <form class='w-100 flex flex-col md:flex-row gap-2 my-2'>
-                    <input type="number" name="qty" class='border border-gray-200 rounded-md py-1 px-2 flex-grow'>
+                @if ($edit)
+                    @php
+                        $prompt = 'Update Cart';
+                    @endphp
+                @else
+                    @php
+                        $prompt = 'Add to Cart';
+                    @endphp
+                @endif
+                <form action={{ route('update-cart', ['user_id' => Auth::id(), 'product_id' => $product->id]) }}
+                    method='POST' class='w-100 flex flex-col md:flex-row gap-2 my-2'>
+                    @csrf
+                    @method('PATCH')
+                    <input type="number" name="quantity" value={{ $quantity }}
+                        class='border border-gray-200 rounded-md py-1 px-2 flex-grow'>
                     @include('components.button', [
                         'link' => false,
                         'text' => $prompt,
@@ -31,6 +37,11 @@
                         'size' => 'sm',
                     ])
                 </form>
+                @error('quantity')
+                    <p class="text-red-500 text-xs mt-1">
+                        {{ $message }}
+                    </p>
+                @enderror
             @endif
             <div class='w-100 flex gap-2 my-2'>
                 @include('components.button', [
@@ -41,13 +52,17 @@
                     'class' => 'px-10 md:px-12',
                 ])
                 @if (Auth::id() == 1)
-                    @include('components.button', [
-                        'link' => route('destroy-product', ['id' => $product->id]),
-                        'text' => 'Delete Item',
-                        'color' => 'fill-reverse',
-                        'size' => 'sm',
-                        'class' => 'px-5 md:px-12',
-                    ])
+                    <form action={{ route('destroy-product', ['id' => $product->id]) }} method="post">
+                        @csrf
+                        @method('DELETE')
+                        @include('components.button', [
+                            'link' => false,
+                            'text' => 'Delete Item',
+                            'color' => 'fill-reverse',
+                            'size' => 'sm',
+                            'class' => 'px-5 md:px-12',
+                        ])
+                    </form>
                 @endif
             </div>
         </div>

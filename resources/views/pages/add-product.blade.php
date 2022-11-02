@@ -20,7 +20,8 @@
         </div>
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="name" class='mb-2'>Clothes Name</label>
-            <input type="text" name='name' placeholder='(5-20 letters)' class='px-2 py-1 w-full' value = {{old('name')}}>
+            <input type="text" name='name' placeholder='(5-20 letters)' class='px-2 py-1 w-full'
+                value={{ old('name') }}>
             @error('name')
                 <p class="text-red-500 text-xs mt-1">
                     {{ $message }}
@@ -29,7 +30,8 @@
         </div>
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="desc" class='mb-2'>Clothes Description</label>
-            <input type="text" name='description' placeholder='(min 5 letters)' class='px-2 py-1 w-full' value = {{old('description')}}>
+            <input type="text" name='description' placeholder='(min 5 letters)' class='px-2 py-1 w-full'
+                value={{ old('description') }}>
             @error('description')
                 <p class="text-red-500 text-xs mt-1">
                     {{ $message }}
@@ -38,7 +40,8 @@
         </div>
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="price" class='mb-2'>Clothes Price</label>
-            <input type="number" name='price' placeholder="≥ 1000" class='px-2 py-1 w-full' value = {{old('price')}}>
+            <input type="number" name='price' placeholder="≥ 1000" class='px-2 py-1 w-full'
+                value={{ old('price') }}>
             @error('price')
                 <p class="text-red-500 text-xs mt-1">
                     {{ $message }}
@@ -47,7 +50,7 @@
         </div>
         <div class='flex flex-col mb-1 md:w-full px-3'>
             <label for="stock" class='mb-2'>Clothes Stock</label>
-            <input type="number" name='stock' placeholder='≥ 1' class='px-2 py-1 w-full' value = {{old('stock')}}>
+            <input type="number" name='stock' placeholder='≥ 1' class='px-2 py-1 w-full' value={{ old('stock') }}>
             @error('stock')
                 <p class="text-red-500 text-xs mt-1">
                     {{ $message }}

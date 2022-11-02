@@ -6,19 +6,27 @@
         </h1>
         <div class='my-2 flex justify-end items-center gap-2 px-5'>
             <h1 class='text-lg md:text-xl font-semibold text-center mb-1'>
-                Total Price: 40,000
+                Total Price: Rp. {{ $total_price }}
             </h1>
             @include('components.button', [
-                'link' => false,
-                'text' => 'Check Out ('.count($products).')',
+                'link' => $total_qty == 0 ? false : route('checkout-cart', ['user_id' => Auth::id()]),
+                'text' => 'Check Out (' . $total_qty . ')',
                 'color' => 'fill',
                 'size' => 'sm',
             ])
         </div>
-        <div class='flex flex-wrap @if(count($products)%4==0)justify-between @else justify-center @endif gap-2 px-4 py-2'>
-            @foreach ($products as $product)
-                @include('components.product-card', ['product' => $product, 'type' => 'cart'])
+        <div
+            class='flex flex-wrap @if ($cart->count() % 4 == 0) justify-between @else justify-start @endif gap-2 px-4 py-2'>
+            @foreach ($cart as $content)
+                @include('components.product-card', [
+                    'product' => $content->product,
+                    'qty' => $content->quantity,
+                    'type' => 'cart',
+                ])
             @endforeach
+            @if ($cart->count() == 0)
+                <h1>No items in the cart!</h1>
+            @endif
         </div>
     </div>
 @endauth

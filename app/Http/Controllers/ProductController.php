@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -15,18 +17,17 @@ class ProductController extends Controller
     // Home -> Get All Products
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(8);
         return view('pages.home', ['products' => $products]);
     }
 
     // Search for products
     public function search(Request $request)
     {
-
         $params = $request->query('query', "");
         $products = Product::where('name', 'like', '%' . $params . '%')
             ->orWhere('description', 'like', '%' . $params . '%')
-            ->get();
+            ->paginate(8);
         return view('pages.home', ['products' => $products, 'search' => true]);
     }
 
@@ -34,7 +35,8 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        return view('pages.detail', ['product' => $product]);
+        $order = Cart::where('productid', $id)->where('userid', Auth::id())->first();
+        return view('pages.detail', ['edit' => $order, "product" => $product, "quantity" => $order ? $order->quantity : 0]);
     }
 
     // Get add product form
