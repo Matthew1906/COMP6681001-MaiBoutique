@@ -3,7 +3,7 @@
 ])
 
 <div class='h-auto p-5 mb-auto flex justify-center items-center'>
-    <form action={{ route('store-product') }} method="post" enctype="multipart/form-data"
+    <form action={{ route('products.store') }} method="post" enctype="multipart/form-data"
         class='w-10/12 md:w-1/2 border border-gray-200 bg-slate-200 my-3 md:mt-10 md:px-2 py-5 flex flex-col justify-center items-start gap-2'>
         <h1 class='text-xl md:text-2xl font-semibold mb-1 self-center'>
             Add Item

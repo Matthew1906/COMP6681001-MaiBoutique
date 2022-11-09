@@ -9,7 +9,7 @@ use App\Models\TransactionDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class OrderController extends Controller
 {
     public function __construct()
     {
@@ -30,7 +30,7 @@ class CartController extends Controller
     }
 
     // Add new product to the cart or update quantity of ordered item in the cart
-    public function store($user_id, $product_id, Request $request)
+    public function update($user_id, $product_id, Request $request)
     {
         $product = Product::find($product_id);
         $order = Cart::where('productid', $product_id)->where('userid', $user_id)->first();
@@ -49,7 +49,7 @@ class CartController extends Controller
         }
         $product->stock -= $request->quantity;
         $product->save();
-        return redirect(route('get-cart', ['user_id' => $user_id]));
+        return redirect(route('orders.index', ['user_id' => $user_id]));
     }
 
     // Remove product from cart
@@ -60,7 +60,7 @@ class CartController extends Controller
         $product->stock += $order->quantity;
         Cart::where('productid', $product_id)->where('userid', $user_id)->delete();
         $product->save();
-        return redirect(route('get-cart', ['user_id' => $user_id]));
+        return redirect(route('orders.index', ['user_id' => $user_id]));
     }
 
     // Checkout from cart

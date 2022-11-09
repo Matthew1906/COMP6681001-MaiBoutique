@@ -29,7 +29,7 @@ class UserController extends Controller
 
         $user = User::create($formFields);
 
-        return redirect(route('home'));
+        return redirect(route('products.index'));
     }
 
     // Show login form
@@ -49,7 +49,7 @@ class UserController extends Controller
         if (auth()->attempt($formFields)) {
             $req->session()->regenerate();
 
-            return redirect(route('home'));
+            return redirect(route('products.index'));
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
@@ -59,7 +59,7 @@ class UserController extends Controller
     public function logout()
     {
         auth()->logout();
-        return redirect(route('home'));
+        return redirect(route('products.index'));
     }
 
     // Show profile

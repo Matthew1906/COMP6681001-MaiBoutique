@@ -24,7 +24,7 @@
                         $prompt = 'Add to Cart';
                     @endphp
                 @endif
-                <form action={{ route('update-cart', ['user_id' => Auth::id(), 'product_id' => $product->id]) }}
+                <form action={{ route('orders.update', ['user_id' => Auth::id(), 'product_id' => $product->id]) }}
                     method='POST' class='w-100 flex flex-col md:flex-row gap-2 my-2'>
                     @csrf
                     @method('PATCH')
@@ -45,14 +45,14 @@
             @endif
             <div class='w-100 flex gap-2 my-2'>
                 @include('components.button', [
-                    'link' => route('home'),
+                    'link' => route('products.index'),
                     'text' => 'Back',
                     'color' => 'fill-reverse',
                     'size' => 'sm',
                     'class' => 'px-10 md:px-12',
                 ])
                 @if (Auth::id() == 1)
-                    <form action={{ route('destroy-product', ['id' => $product->id]) }} method="post">
+                    <form action={{ route('products.destroy', ['id' => $product->id]) }} method="post">
                         @csrf
                         @method('DELETE')
                         @include('components.button', [

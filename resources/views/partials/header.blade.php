@@ -19,11 +19,11 @@
             <h1 class='font-semibold text-xl'>MAI BOUTIQUE</h1>
             @auth
                 <ul class='font-light md:text-md flex list-none gap-3'>
-                    <li><a href={{ route('home') }} class='hover:text-cyan-600'>Home</a></li>
-                    <li><a href={{ route('search') }} class='hover:text-cyan-600'>Search</a></li>
+                    <li><a href={{ route('products.index') }} class='hover:text-cyan-600'>Home</a></li>
+                    <li><a href={{ route('products.search') }} class='hover:text-cyan-600'>Search</a></li>
                     @if (Auth::id() != 1)
                         <li>
-                            <a href={{ route('get-cart', ['user_id' => Auth::id()]) }} class='hover:text-cyan-600'>
+                            <a href={{ route('orders.index', ['user_id' => Auth::id()]) }} class='hover:text-cyan-600'>
                                 Cart
                             </a>
                         </li>
@@ -38,7 +38,7 @@
         <div class='flex gap-2 md:gap-4'>
             @auth
                 @includeWhen(Auth::id() == 1, 'components.button', [
-                    'link' => route('create-product'),
+                    'link' => route('products.create'),
                     'text' => 'Add Item',
                     'color' => 'outline',
                     'size' => 'sm',

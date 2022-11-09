@@ -64,13 +64,13 @@ class ProductController extends Controller
         $image = file_get_contents($path);
         $new_product->image = base64_encode($image);
         $new_product->save();
-        return redirect(route('home'));
+        return redirect(route('products.index'));
     }
 
     // Delete product by id
     public function destroy($id)
     {
         Product::destroy($id);
-        return redirect(route('home'));
+        return redirect(route('products.index'));
     }
 }
