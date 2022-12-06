@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -62,7 +63,8 @@ class ProductController extends Controller
         $new_product->stock = $req->stock;
         $path = $req->file('image')->getRealPath();
         $image = file_get_contents($path);
-        $new_product->image = base64_encode($image);
+        Storage::put("public/products/".$req->file('image')->getClientOriginalName(), $image);
+        $new_product->image = $req->file("image")->getClientOriginalName();
         $new_product->save();
         return redirect(route('products.index'));
     }
