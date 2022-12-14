@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
@@ -32,9 +33,10 @@ class ProductSeeder extends Seeder
                 "white-hoodie", "yellow-hoodie"
             ), function(string $filename){
                 $image = file_get_contents(resource_path("images/".$filename.".jpg"));
+                Storage::put("public/products/".$filename.".jpg", $image);
                 return  [
                     "name"=>Str::title(Str::of($filename)->replace("-", " ")),
-                    "image"=>base64_encode($image),
+                    "image"=>$filename.".jpg",
                     "description"=>"High quality ".Str::title(Str::of($filename)->replace("-", " "))." , Size ".fake()->randomElement(['S', 'M', 'L', 'XL']),
                     "price"=>1000*fake()->numberBetween(2, 400),
                     "stock"=>fake()->numberBetween(1, 100),

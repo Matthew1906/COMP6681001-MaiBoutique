@@ -3,7 +3,7 @@
     <div
         class='border border-gray-200 bg-slate-200 my-3 md:mt-10 md:p-2 flex flex-col md:flex-row justify-center items-center md:items-start gap-2'>
         <div class='border-2 border-gray-300 rounded p-4'>
-            <img src="data:image/jpg;base64,{{ $product->image }}" alt="{{ $product->name }}"
+            <img src="{{ asset('storage/products/'.$product->image) }}" alt="{{ $product->name }}"
                 class='h-60 w-60 object-cover'>
         </div>
         <div class='border border-gray-200 py-1 md:py-3 md:px-1 md:w-96 font-semibold'>
