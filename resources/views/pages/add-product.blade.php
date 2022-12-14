@@ -1,6 +1,4 @@
-@include('partials.header', [
-    'title' => 'Add Product - MaiBoutique',
-])
+@include('partials.header', ['title' => 'Add Product - MaiBoutique'])
 
 <div class='h-auto p-5 mb-auto flex justify-center items-center'>
     <form action={{ route('products.store') }} method="post" enctype="multipart/form-data"

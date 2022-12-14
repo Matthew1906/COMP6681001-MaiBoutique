@@ -1,4 +1,4 @@
-@include('partials.header', ['title' => 'Sign Up - MaiBoutique'])
+@include('partials.header', ['title' => 'Edit Profile - MaiBoutique'])
 
 <div class="update-profile flex justify-center my-16">
     <div class="update-profile w-[400px] bg-white rounded-lg p-8">

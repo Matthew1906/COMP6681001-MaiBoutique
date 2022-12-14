@@ -1,4 +1,4 @@
-@include('partials.header', ['title' => 'Sign Up - MaiBoutique'])
+@include('partials.header', ['title' => 'My Profile - MaiBoutique'])
 
     <div
     class="profile-card w-2/5 m-auto mt-16 p-8 border-2 border-gray-400 text-center">

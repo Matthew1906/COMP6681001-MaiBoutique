@@ -1,4 +1,4 @@
-@include('partials.header', ['title' => 'Home - MaiBoutique'])
+@include('partials.header', ['title' => 'Transaction History - MaiBoutique'])
 
 <div class='h-auto p-5 mb-auto'>
     @foreach ($transactions as $transaction)
