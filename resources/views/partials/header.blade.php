@@ -27,7 +27,7 @@
                                 Cart
                             </a>
                         </li>
-                        <li><a href="#" class='hover:text-cyan-600'>History</a></li>
+                        <li><a href={{ route('transaction-history') }} class='hover:text-cyan-600'>History</a></li>
                     @endif
                     <li>
                         <a href={{ route('profile') }} class='hover:text-cyan-600'>Profile</a>

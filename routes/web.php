@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\OrderController;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,6 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/edit-profile', 'updateProfile')->name('edit-profile')->middleware('auth');
     Route::get('/edit-password', 'updatePassword')->name('edit-password')->middleware("auth");
     Route::patch('/user/profile', 'update')->name('update-profile')->middleware("auth");
-    Route::get("/transaction-history", "profile")->name("transaction-history")->middleware('auth');
 });
 
 Route::controller(ProductController::class)->group(function () {
@@ -52,6 +52,10 @@ Route::controller(OrderController::class)->group(function () {
     Route::patch("/users/{user_id}/cart/{product_id}", "update")->name("orders.update");
     Route::delete('/users/{user_id}/cart/{product_id}', "destroy")->name("orders.destroy");
     Route::get("/users/{user_id}/checkout", "checkout")->name('checkout-cart'); // Nanti pindahin ke Transaction Controller
+});
+
+Route::controller(TransactionController::class)->group(function () {
+    Route::get("/transaction-history", "show")->name("transaction-history")->middleware('auth');
 });
 
 Route::fallback(function () {

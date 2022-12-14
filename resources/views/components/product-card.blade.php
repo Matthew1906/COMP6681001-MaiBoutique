@@ -6,7 +6,7 @@
         <h4 class='text-md font-md mb-1'>Qty: {{ $qty }}</h4>
         <div class='flex gap-1 mt-2'>
             @include('components.button', [
-                'link' => route('products.detail', ['id' => $product->id]),
+                'link' => route('products.show', ['id' => $product->id]),
                 'text' => 'Edit Cart',
                 'color' => 'fill',
                 'size' => 'sm',
