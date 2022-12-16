@@ -4,16 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
-use App\Models\Transaction;
-use App\Models\TransactionDetail;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'member']);
     }
 
     // Get all contents of the cart
@@ -63,22 +60,4 @@ class OrderController extends Controller
         return redirect(route('orders.index', ['user_id' => $user_id]));
     }
 
-    // Checkout from cart
-    public function checkout($user_id)
-    {
-        $cart = Cart::where('userid', $user_id)->get();
-        $new_transaction = new Transaction;
-        $new_transaction->userid = $user_id;
-        $new_transaction->date = Carbon::now()->toDate();
-        $new_transaction->save();
-        foreach ($cart as $content) {
-            $new_transaction_detail = new TransactionDetail;
-            $new_transaction_detail->transactionid = $new_transaction->id;
-            $new_transaction_detail->productid = $content->product->id;
-            $new_transaction_detail->quantity = $content->quantity;
-            $new_transaction_detail->save();
-        }
-        Cart::where('userid', $user_id)->delete();
-        return redirect(route('transaction-history'));
-    }
 }

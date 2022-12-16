@@ -9,49 +9,46 @@
     <link rel="icon" type="image/x-icon" href="https://twemoji.maxcdn.com/2/svg/1f3ec.svg">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
-{{-- Kurang Auth stuff and links (masih placeholder) --}}
-
 <body class='w-full flex flex-col min-h-screen h-auto'>
     <nav
-        class='bg-slate-200 px-5 py-2 md:px-10 md:py-5 flex flex-col md:flex-row justify-center md:justify-between items-center gap-2 md:gap-0'>
+        class='bg-slate-200 px-5 py-2 md:px-10 md:py-3 flex flex-col md:flex-row justify-center md:justify-between items-center gap-2 md:gap-0'>
         <div class='flex flex-col md:flex-row items-center gap-1 md:gap-4'>
             <h1 class='font-semibold text-xl'>MAI BOUTIQUE</h1>
             @auth
                 <ul class='font-light md:text-md flex list-none gap-3'>
                     <li><a href={{ route('products.index') }} class='hover:text-cyan-600'>Home</a></li>
                     <li><a href={{ route('products.search') }} class='hover:text-cyan-600'>Search</a></li>
-                    @if (Auth::id() != 1)
+                    @if (Auth::user()->role->name=='Member')
                         <li>
                             <a href={{ route('orders.index', ['user_id' => Auth::id()]) }} class='hover:text-cyan-600'>
                                 Cart
                             </a>
                         </li>
-                        <li><a href={{ route('transaction-history') }} class='hover:text-cyan-600'>History</a></li>
+                        <li><a href={{ route('transactions.index', ['user_id'=>Auth::id()]) }} class='hover:text-cyan-600'>History</a></li>
                     @endif
                     <li>
-                        <a href={{ route('profile') }} class='hover:text-cyan-600'>Profile</a>
+                        <a href={{ route('users.show', ['user_id'=>Auth::id()]) }} class='hover:text-cyan-600'>Profile</a>
                     </li>
                 </ul>
             @endauth
         </div>
         <div class='flex gap-2 md:gap-4'>
             @auth
-                @includeWhen(Auth::id() == 1, 'components.button', [
+                @includeWhen(Auth::user()->role->name=='Admin', 'components.button', [
                     'link' => route('products.create'),
                     'text' => 'Add Item',
                     'color' => 'outline',
                     'size' => 'sm',
                 ])
                 @include('components.button', [
-                    'link' => route('logout'),
+                    'link' => route('users.logout'),
                     'text' => 'Sign Out',
                     'color' => 'outline',
                     'size' => 'sm',
                 ])
             @else
                 @include('components.button', [
-                    'link' => route('login'),
+                    'link' => route('users.login'),
                     'text' => 'Sign In',
                     'color' => 'outline',
                     'size' => 'sm',

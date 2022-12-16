@@ -6,7 +6,7 @@
             Update Profile
         </h2>
 
-        <form action={{ route('update-profile') }} method="POST" class="my-8 w-full">
+        <form action={{ route('users.update', ['user_id'=>Auth::id()]) }} method="POST" class="my-8 w-full">
             @csrf
             @method('PATCH')
             <div class="username mt-4">

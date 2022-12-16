@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
         DB::table("users")->insert([
             [
                 "username"=>"Admin",
+                "role_id"=>1,
                 "email"=>"admin@maiboutique.com",
                 "password"=>bcrypt("admin"),
                 "phone"=>"082392199234",
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             ],
             [
                 "username"=>"Matthew",
+                "role_id"=>2,
                 "email"=>"matthew@maiboutique.com",
                 "password"=>bcrypt("matthew"),
                 "phone"=>"081262177289",
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
             ],
             [
                 "username"=>"Bennett",
+                "role_id"=>2,
                 "email"=>"bennett@maiboutique.com",
                 "password"=>bcrypt("bennett"),
                 "phone"=>"089317164332",

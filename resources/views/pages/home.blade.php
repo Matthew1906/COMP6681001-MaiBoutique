@@ -25,7 +25,7 @@
         @endif
     @endisset
     <div
-        class='flex flex-wrap @if (count($products) % 4 == 0) justify-between @else justify-start @endif gap-4 px-5 py-2'>
+        class='flex flex-wrap @if(count($products) % 4 == 0)justify-center lg:justify-between @else justify-start @endif gap-4 px-5 py-2'>
         @foreach ($products as $product)
             @include('components.product-card', ['product' => $product, 'type' => 'product'])
         @endforeach

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,16 +27,19 @@ Route::get('/', function () {
     return view('pages.landing');
 })->name('landing');
 
+Route::controller(AuthController::class)->group(function(){
+    Route::get('/login', 'login')->name('users.login');
+    Route::post('/login', 'authenticate')->name('users.authenticate');
+    Route::get('/register', 'create')->name('users.create');
+    Route::post('/register', 'store')->name('users.store');
+    Route::get('/logout', 'logout')->name('users.logout')->middleware('auth');
+});
+
 Route::controller(UserController::class)->group(function () {
-    Route::get('/login', 'login')->name('login');
-    Route::post('/login', 'authenticate')->name('authenticate');
-    Route::get('/register', 'create')->name('create-user');
-    Route::post('/register', 'store')->name('store-user');
-    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
-    Route::get('/profile', 'profile')->name('profile')->middleware('auth');
-    Route::get('/edit-profile', 'updateProfile')->name('edit-profile')->middleware('auth');
-    Route::get('/edit-password', 'updatePassword')->name('edit-password')->middleware("auth");
-    Route::patch('/user/profile', 'update')->name('update-profile')->middleware("auth");
+    Route::get('/users/{user_id}', 'profile')->name('users.show');
+    Route::get('/users/{user_id}/profile', 'editProfile')->name('users.edit.profile')->middleware('member');
+    Route::get('/users/{user_id}/password', 'editPassword')->name('users.edit.password');
+    Route::patch('/users/{user_id}', 'update')->name('users.update');
 });
 
 Route::controller(ProductController::class)->group(function () {
@@ -51,11 +55,11 @@ Route::controller(OrderController::class)->group(function () {
     Route::get("/users/{user_id}/cart", "index")->name("orders.index");
     Route::patch("/users/{user_id}/cart/{product_id}", "update")->name("orders.update");
     Route::delete('/users/{user_id}/cart/{product_id}', "destroy")->name("orders.destroy");
-    Route::get("/users/{user_id}/checkout", "checkout")->name('checkout-cart'); // Nanti pindahin ke Transaction Controller
 });
 
 Route::controller(TransactionController::class)->group(function () {
-    Route::get("/transaction-history", "show")->name("transaction-history")->middleware('auth');
+    Route::get("/users/{user_id}/history", "index")->name("transactions.index");
+    Route::get("/users/{user_id}/checkout", "store")->name('transactions.store');
 });
 
 Route::fallback(function () {

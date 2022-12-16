@@ -5,7 +5,7 @@
         <p class='text-white text-md md:text-xl font-light mb-3'>Online Boutique that provides you with various
             clothes to suit your various activities.</p>
         @include('components.button', [
-            'link' => route('create-user'),
+            'link' => route('users.create'),
             'text' => 'Sign Up Now',
             'color' => 'fill',
             'size' => 'lg',

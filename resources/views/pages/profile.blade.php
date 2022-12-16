@@ -1,43 +1,39 @@
 @include('partials.header', ['title' => 'My Profile - MaiBoutique'])
 
-    <div
-    class="profile-card w-2/5 m-auto mt-16 p-8 border-2 border-gray-400 text-center">
+<div class="profile-card w-full lg:w-2/5 m-auto mt-8 p-3">
+    <div class='p-4 lg:p-8 border-2 border-gray-400 text-center'>
         <h1 class="text-4xl">My Profile</h1>
 
         <div class="user-label w-fit m-auto bg-gray-400 text-white rounded-lg font-semibold
-        mt-8 px-8 py-1">
-            @if (auth()->user()->id == 1)
-                admin
-            @else
-                member
-            @endif
+        my-4 px-8 py-1">
+            {{ Auth::user()->role->name }}
         </div>
 
         <div class="user-details">
-            <strong>username: {{auth()->user()->username}}</strong>
+            <strong>Username: {{ auth()->user()->username }}</strong>
 
-            <p>{{auth()->user()->email}}</p>
-            <p>Address: {{auth()->user()->address}}</p>
-            <p>Phone: {{auth()->user()->phone}}</p>
+            <p>{{ auth()->user()->email }}</p>
+            <p>Address: {{ auth()->user()->address }}</p>
+            <p>Phone: {{ auth()->user()->phone }}</p>
         </div>
 
-        <div
-        class="button-container flex justify-center mt-4">
-            @if (auth()->user()->id != 1)
-                <a href={{route('edit-profile')}}
-                class="edit-profile mx-8 py-2 px-8 bg-blue-600 text-white  rounded-lg border-2 border-blue-600
+        <div class="button-container flex justify-center mt-4">
+            @if (Auth::user()->role->name == 'Member')
+                <a href={{ route('users.edit.profile', ['user_id' => Auth::id()]) }}
+                    class="edit-profile mx-8 py-2 px-8 bg-blue-600 text-white  rounded-lg border-2 border-blue-600
                 hover:bg-white hover:text-blue-600 transition">
                     Edit Profile
                 </a>
             @endif
 
-            <a href={{route('edit-password')}}
-            class="edit-password mx-8 py-2 px-8 rounded-lg border-2 border-blue-600 text-blue-600
+            <a href={{ route('users.edit.password', ['user_id' => Auth::id()]) }}
+                class="edit-password mx-8 py-2 px-8 rounded-lg border-2 border-blue-600 text-blue-600
             hover:bg-blue-600 hover:text-white
             transition">
                 Edit Password
             </a>
         </div>
     </div>
+</div>
 
 @include('partials.footer')

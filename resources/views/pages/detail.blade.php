@@ -13,7 +13,7 @@
             <p class='font-normal pb-1 text-xs md:text-sm'>{{ $product->description }}
             <h2 class='md:text-lg my-1 border-b-4 pb-3 border-gray-500'>Stock: {{ $product->stock }}</h2>
             </p>
-            @if (Auth::id() != 1)
+            @if (Auth::user()->role->name=='Member')
                 <h2 class='md:text-lg my-1'>Quantity:</h2>
                 @if ($edit)
                     @php
@@ -51,7 +51,7 @@
                     'size' => 'sm',
                     'class' => 'px-10 md:px-12',
                 ])
-                @if (Auth::id() == 1)
+                @if (Auth::user()->role->name=='Admin')
                     <form action={{ route('products.destroy', ['id' => $product->id]) }} method="post">
                         @csrf
                         @method('DELETE')

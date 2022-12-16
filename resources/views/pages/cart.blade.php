@@ -9,7 +9,7 @@
                 Total Price: Rp. {{ $total_price }}
             </h1>
             @include('components.button', [
-                'link' => $total_qty == 0 ? false : route('checkout-cart', ['user_id' => Auth::id()]),
+                'link' => $total_qty == 0 ? false : route('transactions.store', ['user_id' => Auth::id()]),
                 'text' => 'Check Out (' . $total_qty . ')',
                 'color' => 'fill',
                 'size' => 'sm',

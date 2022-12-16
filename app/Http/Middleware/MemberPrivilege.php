@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminPrivilege
+class MemberPrivilege
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class AdminPrivilege
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role->name!='Admin') {
+        if (Auth::user()->role->name!='Member') {
             return redirect(401);
         }
         return $next($request);
