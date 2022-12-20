@@ -1,5 +1,6 @@
 <div class='border rounded-sm border-gray-400 p-4'>
-    <img src="{{ asset("storage/products/".$product->image) }}" alt="{{ $product->name }}" class='h-60 w-60 object-cover mb-1'>
+    <img src="{{ asset("storage/products/".$product->image) }}" alt="{{ $product->name }}"
+        class='h-60 w-60 object-cover mb-1'>
     <h3 class='font-bold text-xl'>{{ $product->name }}</h3>
     <h4 class='text-md font-md mb-1'>Rp. {{ $product->price }} </h4>
     @if ($type == 'cart')

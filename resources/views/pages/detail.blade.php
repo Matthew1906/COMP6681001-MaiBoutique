@@ -11,9 +11,15 @@
             <h3 class='text-xl md:text-2xl pb-1 border-b-2 border-gray-300'>{{ $product->price }}</h3>
             <h2 class='md:text-lg my-1'>Product Detail</h2>
             <p class='font-normal pb-1 text-xs md:text-sm'>{{ $product->description }}
-            <h2 class='md:text-lg my-1 border-b-4 pb-3 border-gray-500'>Stock: {{ $product->stock }}</h2>
+            <h2 class='md:text-lg my-1 border-b-4 pb-3 border-gray-500'>
+                @if($product->stock>0)
+                    Stock:{{ $product->stock }}
+                @else
+                    <span class='px-3 py-2 bg-red-600 text-white text-sm rounded-lg'>SOLD OUT</span>
+                @endif
+            </h2>
             </p>
-            @if (Auth::user()->role->name=='Member')
+            @if (Auth::user()->role->name=='Member' && $product->stock>0)
                 <h2 class='md:text-lg my-1'>Quantity:</h2>
                 @if ($edit)
                     @php

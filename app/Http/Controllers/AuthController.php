@@ -48,8 +48,8 @@ class AuthController extends Controller
             'password' => ['required', 'min:5', 'max:20']
         ]);
         if($req->remember_me){
-            Cookie::queue('email', $req->email);
-            Cookie::queue('password', $req->password);
+            Cookie::queue('email', $req->email, 1440);
+            Cookie::queue('password', $req->password, 1440);
         }
         if (auth()->attempt($formFields)) {
             $req->session()->regenerate();

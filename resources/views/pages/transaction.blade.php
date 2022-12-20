@@ -1,7 +1,7 @@
 @include('partials.header', ['title' => 'Transaction History - MaiBoutique'])
 
 <div class='h-auto p-5 mb-auto'>
-    @if($transactions->empty())
+    @if($transactions->count()==0)
         <h2 class="flex justify-center items-center text-3xl font-bold">No Transactions!!</h2>
     @endif
     @foreach ($transactions as $transaction)
