@@ -1,4 +1,8 @@
-@include('partials.header', ['title' => 'Home - MaiBoutique'])
+@extends('layout')
+
+@section('title', "Home")
+
+@section('body')
 <div class='bg-black bg-opacity-50 w-full h-screen flex justify-center items-center'>
     <div class='text-center px-3 md:px-0'>
         <h1 class='text-white text-2xl md:text-5xl font-bold mb-3'>Welcome to MaiBoutique</h1>
@@ -12,4 +16,4 @@
         ])
     </div>
 </div>
-@include('partials.footer')
+@endsection

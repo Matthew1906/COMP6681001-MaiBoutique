@@ -1,4 +1,8 @@
-@include('partials.header', ['title' => $product->name . ' - MaiBoutique'])
+@extends('layout')
+
+@section('title', $product->name)
+
+@section('body')
 <div class='h-auto p-3 flex justify-center items-start'>
     <div
         class='border border-gray-200 bg-slate-200 my-3 md:mt-10 md:p-2 flex flex-col md:flex-row justify-center items-center md:items-start gap-2'>
@@ -30,7 +34,7 @@
                         $prompt = 'Add to Cart';
                     @endphp
                 @endif
-                <form action={{ route('orders.update', ['user_id' => Auth::id(), 'product_id' => $product->id]) }}
+                <form action="{{ route('orders.update', ['user_id' => Auth::id(), 'product_id' => $product->id]) }}"
                     method='POST' class='w-100 flex flex-col md:flex-row gap-2 my-2'>
                     @csrf
                     @method('PATCH')
@@ -58,7 +62,7 @@
                     'class' => 'px-10 md:px-12',
                 ])
                 @if (Auth::user()->role->name=='Admin')
-                    <form action={{ route('products.destroy', ['id' => $product->id]) }} method="post">
+                    <form action="{{ route('products.destroy', ['id' => $product->id]) }}" method="post">
                         @csrf
                         @method('DELETE')
                         @include('components.button', [
@@ -74,4 +78,4 @@
         </div>
     </div>
 </div>
-@include('partials.footer')
+@endsection

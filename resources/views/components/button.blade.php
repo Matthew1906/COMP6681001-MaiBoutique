@@ -1,5 +1,5 @@
 @if($link)
-<a href={{$link}}>
+<a href="{{$link}}">
 @endif
 <button
     class='

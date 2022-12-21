@@ -1,5 +1,8 @@
-@include('partials.header', ['title' => 'Transaction History - MaiBoutique'])
+@extends('layout')
 
+@section('title', "Transaction History")
+
+@section('body')
 <div class='h-auto p-5 mb-auto'>
     @if($transactions->count()==0)
         <h2 class="flex justify-center items-center text-3xl font-bold">No Transactions!!</h2>
@@ -30,4 +33,4 @@
     @endforeach
 </div>
 
-@include('partials.footer')
+@endsection

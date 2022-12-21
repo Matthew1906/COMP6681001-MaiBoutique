@@ -12,7 +12,7 @@
                 'color' => 'fill',
                 'size' => 'sm',
             ])
-            <form action={{ route('orders.destroy', ['user_id' => Auth::id(), 'product_id' => $product->id]) }}
+            <form action="{{ route('orders.destroy', ['user_id' => Auth::id(), 'product_id' => $product->id]) }}"
                 method='POST'>
                 @csrf
                 @method('DELETE')

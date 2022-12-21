@@ -1,5 +1,8 @@
-@include('partials.header', ['title' => 'Home - MaiBoutique'])
+@extends('layout')
 
+@section('title', "Home")
+
+@section('body')
 <div class='h-auto p-5 mb-auto'>
     <h1 class='text-xl md:text-2xl font-semibold text-center mb-1'>
         @isset($search)
@@ -12,7 +15,7 @@
     </h1>
     @isset($search)
         @if ($search)
-            <form action={{ route('products.search') }} method='GET' class='w-100 flex gap-2 mt-2 p-4'>
+            <form action="{{ route('products.search') }}" method='GET' class='w-100 flex gap-2 mt-2 p-4'>
                 <input type="text" name='query' class='border border-gray-200 rounded-sm py-1 px-2 flex-grow'
                     placeholder='Type something' value="{{Request::query('query')}}">
                 @include('components.button', [
@@ -29,6 +32,9 @@
         @foreach ($products as $product)
             @include('components.product-card', ['product' => $product, 'type' => 'product'])
         @endforeach
+        @if($products->count()==0)
+            <h2>No Products found!!</h2>
+        @endif
     </div>
     @if ($products->lastPage() > 1)
         <ul class="mt-2 flex justify-center items-center">
@@ -43,4 +49,4 @@
     @endif
 </div>
 
-@include('partials.footer')
+@endsection

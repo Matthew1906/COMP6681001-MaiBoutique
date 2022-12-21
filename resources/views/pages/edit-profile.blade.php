@@ -1,12 +1,15 @@
-@include('partials.header', ['title' => 'Edit Profile - MaiBoutique'])
+@extends('layout')
 
+@section('title', "Edit Profile")
+
+@section('body')
 <div class="update-profile flex justify-center my-16">
     <div class="update-profile w-[400px] bg-white rounded-lg p-8">
         <h2 class="text-3xl text-center">
             Update Profile
         </h2>
 
-        <form action={{ route('users.update', ['user_id'=>Auth::id()]) }} method="POST" class="my-8 w-full">
+        <form action="{{ route('users.update', ['user_id'=>Auth::id()]) }}" method="POST" class="my-8 w-full">
             @csrf
             @method('PATCH')
             <div class="username mt-4">
@@ -14,7 +17,7 @@
                     Username
                 </label><br>
                 <input type="text" name="username" id="username" class="w-full border-2 rounded-md px-2 py-1 mt-2"
-                    value={{auth()->user()->username}}>
+                    value="{{Auth::user()->username}}">
 
                 @error('username')
                     <p class="text-red-500 text-xs mt-1">
@@ -28,7 +31,7 @@
                     Email
                 </label><br>
                 <input type="text" name="email" id="email" class="w-full border-2 rounded-md px-2 py-1 mt-2"
-                    value={{auth()->user()->email}}>
+                    value="{{Auth::user()->email}}">
 
                 @error('email')
                     <p class="text-red-500 text-xs mt-1">
@@ -42,7 +45,7 @@
                     Phone Number
                 </label><br>
                 <input type="text" name="phone" id="phone" class="w-full border-2 rounded-md px-2 py-1 mt-2"
-                    value={{auth()->user()->phone}}>
+                    value="{{Auth::user()->phone}}">
 
                 @error('phone')
                     <p class="text-red-500 text-xs mt-1">
@@ -56,7 +59,7 @@
                     Address
                 </label><br>
                 <input type="text" name="address" id="address" class="w-full border-2 rounded-md px-2 py-1 mt-2"
-                    value={{auth()->user()->address}}>
+                    value="{{Auth::user()->address}}">
 
                 @error('address')
                     <p class="text-red-500 text-xs mt-1">
@@ -72,7 +75,7 @@
             </button>
         </form>
 
-        <a href={{url()->previous()}}
+        <a href="{{URL::previous()}}"
         class="py-2 px-8 rounded-lg border-2 border-red-600 text-red-600
         hover:bg-red-600 hover:text-white">
             Back
@@ -80,4 +83,4 @@
     </div>
 </div>
 
-@include('partials.footer')
+@endsection

@@ -1,10 +1,14 @@
-@include('partials.header', ['title' => 'Sign Up - MaiBoutique'])
+@extends('layout')
+
+@section('title', "Sign Up")
+
+@section('body')
 <div class="register flex justify-center my-16">
     <div class="register flex flex-col items-center w-[400px] bg-white rounded-lg p-8">
         <h2 class="text-3xl font-semibold">
             Register
         </h2>
-        <form action={{ route('users.store') }} method="POST" class="mt-4 w-full">
+        <form action="{{ route('users.store') }}" method="POST" class="mt-4 w-full">
             @csrf
             <div class="username mt-2">
                 <label for="username">
@@ -78,10 +82,10 @@
 
         <div class="sign-in text-sm mt-4">
             Already have an account?
-            <a href={{ route('users.login') }} class="underline text-blue-400 hover:text-blue-600">
+            <a href="{{ route('users.login') }}" class="underline text-blue-400 hover:text-blue-600">
                 Sign In Here
             </a>
         </div>
     </div>
 </div>
-@include('partials.footer')
+@endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
@@ -47,7 +48,7 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required', 'min:5', 'max:20']
         ]);
-        if (auth()->attempt($formFields)) {
+        if (Auth::attempt($formFields)) {
             if($req->remember_me){
                 Cookie::queue('email', $req->email, 1440);
                 Cookie::queue('password', $req->password, 1440);
@@ -61,7 +62,7 @@ class AuthController extends Controller
     // Logout user
     public function logout()
     {
-        auth()->logout();
+        Auth::logout();
         return redirect(route('products.index'));
     }
 }

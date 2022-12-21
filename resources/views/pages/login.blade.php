@@ -1,11 +1,14 @@
-@include('partials.header', ['title' => 'Sign In - MaiBoutique'])
+@extends('layout')
 
+@section('title', "Sign In")
+
+@section('body')
 <div class="login flex justify-center my-16">
     <div class="login flex flex-col items-center w-[400px] bg-white rounded-lg p-8">
         <h2 class="text-3xl font-semibold">
             Sign In
         </h2>
-        <form action={{ route('users.authenticate') }} method="POST" class="mt-2 w-full">
+        <form action="{{ route('users.authenticate') }}" method="POST" class="mt-2 w-full">
             @csrf
             <div class="email mt-2">
                 <label for="email">
@@ -46,11 +49,11 @@
         </form>
         <div class="sign-in text-sm mt-4">
             Not Registered yet?
-            <a href={{ route('users.create') }} class="underline text-blue-400 hover:text-blue-600">
+            <a href="{{ route('users.create') }}" class="underline text-blue-400 hover:text-blue-600">
                 Register Here
             </a>
         </div>
     </div>
 </div>
 
-@include('partials.footer')
+@endsection

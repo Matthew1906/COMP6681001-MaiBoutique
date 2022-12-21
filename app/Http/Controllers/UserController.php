@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -29,7 +30,7 @@ class UserController extends Controller
 
     // Update profile
     public function update(Request $req) {
-        if(array_key_exists("old-password", $req->input())){
+        if(Arr::exists($req->input(), 'old-password')){
             $formFields = $req->validate([
                 'old-password' => ['required', 'current_password'],
                 'new-password' => ['required', 'min:5', 'max:20']

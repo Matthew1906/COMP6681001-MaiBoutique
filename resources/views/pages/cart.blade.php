@@ -1,4 +1,8 @@
-@include('partials.header', ['title' => 'My Cart - MaiBoutique'])
+@extends('layout')
+
+@section('title', 'My Cart')
+
+@section('body')
 @auth
     <div class='h-auto p-5 mb-auto'>
         <h1 class='text-xl md:text-2xl font-semibold text-center mb-1'>
@@ -30,4 +34,4 @@
         </div>
     </div>
 @endauth
-@include('partials.footer')
+@endsection
