@@ -58,7 +58,7 @@
             @endauth
         </div>
     </nav>
-    <main style='@auth background-image:none; @else background-image:url("{{ asset('header.webp') }}"); @endauth'
+    <main style='@auth background-image:none; @else background-image:url("{{ asset('header.jpeg') }}"); @endauth'
         class="min-h-screen h-auto mb-auto bg-cover bg-no-repeat">
         @yield('body')
     </main>
